@@ -1,0 +1,34 @@
+# hash can be used to comment to allow your reader understand what you are doing.
+# use mark down to change and format your ordinary test, to bold, italize,etc.
+
+# On fabric you can do a simple calculation
+
+2 + 3    # use the shift + enter just like the Jupiter note
+
+# markdown.
+
+# Creating Dataframe using pyspark and reading data from Data lake house and creating a data frame for the file.
+
+# Data frame
+
+df =spark.read.csv('abfss://sparks@onelake.dfs.fabric.microsoft.com/Spark_lake.Lakehouse/Files/sample_superstore.csv')
+display(df)
+df.show()
+
+
+df =spark.read.options(header = 'True').csv('abfss://sparks@onelake.dfs.fabric.microsoft.com/Spark_lake.Lakehouse/Files/sample_superstore.csv')
+
+display(df)
+
+df =spark.read.format('csv').options(header = 'True').load('abfss://sparks@onelake.dfs.fabric.microsoft.com/Spark_lake.Lakehouse/Files/sample_superstore.csv')
+display(df)
+
+the is more better way to read and load data.
+the csv is the file format, it can be pfd,json etc. depending on that file format.
+
+df.printSchema()          ---- ths helps you see the schema, but by default it sees all data type as string.
+
+to get it proper do: 
+
+df =spark.read.format('csv').options(header = 'True',inferSchema = True).load('abfss://sparks@onelake.dfs.fabric.microsoft.com/Spark_lake.Lakehouse/Files/sample_superstore.csv')
+display(df)
